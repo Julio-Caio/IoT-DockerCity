@@ -69,14 +69,78 @@ Simulação e monitoramento de redes IoT heterogêneas em um ambiente de Smart C
 
 ---
 
-## 📊 Datasets Recomendados
+## 🚀 Instalação e Execução
+Pré-requisitos
+Certifique-se de ter os seguintes programas instalados:
 
-* [SmartSantander](https://smartsantander.eu/)
-* [CityPulse](https://www.citypulse.eu/)
-* [OpensenseMap](https://opensensemap.org)
-* [NYC Open Data](https://opendata.cityofnewyork.us)
+Docker e Docker Compose: Para a orquestração dos contêineres.
 
----
+Python 3: Para rodar o script do Mininet.
+
+Mininet: A biblioteca para a emulação de rede.
+
+Figlet: O programa para exibir o nome do script em arte ASCII.
+
+Passo a passo
+Clone o repositório:
+
+git clone [https://github.com/seurepositorio/iot-dockercity.git](https://github.com/seurepositorio/iot-dockercity.git)
+cd iot-dockercity
+
+Dê permissão de execução ao script run.sh:
+```bash
+
+   chmod +x run.sh
+```
+
+### Execute o script principal:
+Use a opção -a ou --all para iniciar todos os componentes da simulação. O script deve ser executado com permissões de root.
+
+```bash
+   sudo ./run.sh -a
+```
+
+## Opções do Script
+
+<table border="1">
+  <tr>
+    <th>Opção</th>
+    <th>Descrição</th>
+  </tr>
+  <tr>
+    <td>-h ou --help</td>
+    <td>Exibe este menu de ajuda.</td>
+  </tr>
+  <tr>
+    <td>-V ou --version</td>
+    <td>Exibe a versão do script.</td>
+  </tr>
+  <tr>
+    <td>-a ou --all</td>
+    <td>Executa todas as funções.</td>
+  </tr>
+  <tr>
+    <td>-m ou --monit</td>
+    <td>Sobe contêineres de monitoramento (Prometheus e Grafana).</td>
+  </tr>
+  <tr>
+    <td>-d ou --devices</td>
+    <td>Sobe contêineres dos dispositivos emulados.</td>
+  </tr>
+  <tr>
+    <td>-c ou --create</td>
+    <td>Cria as rotas de rede dentro dos contêineres.</td>
+  </tr>
+  <tr>
+    <td>-i ou --infra</td>
+    <td>Levanta a rede do Mininet.</td>
+  </tr>
+  <tr>
+    <td>-cl ou --clean</td>
+    <td>Remove todas as imagens Docker.</td>
+  </tr>
+</table>
+
 
 ### 4. Acessar dashboards
 

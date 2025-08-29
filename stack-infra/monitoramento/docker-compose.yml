@@ -3,8 +3,8 @@ version: '3.8'
 services:
   prometheus:
     build:
-	context: .
-	dockerfile: Dockerfile.prometheus
+      context: .
+      dockerfile: Dockerfile.prometheus
     container_name: prometheus
     user: root
     cap_add:
@@ -16,8 +16,6 @@ services:
     ports:
     - 9090:9090
     restart: always    
-    command:
-    - --config.file=/etc/prometheus/prometheus.yml
     networks:
       - brteste02
 

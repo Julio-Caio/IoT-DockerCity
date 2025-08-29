@@ -1,10 +1,17 @@
-FROM prom/prometheus:latest
+# Stage 1: pega o Prometheus oficial
+FROM prom/prometheus:latest as prometheus
 
-USER root
+# Stage 2: constrói em Alpine com ferramentas extras
+FROM alpine:3.20
 
-# Instala iperf3 (Debian/Alpine dependendo da imagem base)
-RUN apt-get update && apt-get install -y iperf3 && rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache iperf3 iputils iproute2 net-tools
 
-# Mantém o entrypoint original do Prometheus
-ENTRYPOINT ["/bin/prometheus"]
+# Copia binário e configs do Prometheus
+COPY --from=prometheus /bin/prometheus /bin/
+COPY --from=prometheus /etc/prometheus /etc/prometheus
+
+EXPOSE 9090
+VOLUME ["/prometheus"]
+
+ENTRYPOINT ["prometheus"]
 CMD ["--config.file=/etc/prometheus/prometheus.yml"]
