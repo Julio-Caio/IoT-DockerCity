@@ -7,11 +7,6 @@ scrape_configs:
     static_configs:
       - targets: ['localhost:9090']
 
-# Aponta para o node exporter local para coletar as métricas.
-  - job_name: 'node-local' # É por esse nome que iremos encontrar as métricas posteriormente.
-    static_configs:
-      - targets: ['node-exporter-local:9100'] #nome do serviço na stack, poderia ser "localhost:9100", pois o agente está rodando na mesma máquina local.
-
 # Aponta para o node exporter alvo para coletar as métricas.
   - job_name: 'sensores'
     static_configs:

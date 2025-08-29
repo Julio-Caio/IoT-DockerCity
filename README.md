@@ -70,30 +70,33 @@ Simulação e monitoramento de redes IoT heterogêneas em um ambiente de Smart C
 ---
 
 ## 🚀 Instalação e Execução
-Pré-requisitos
+
+### Pré-requisitos
 Certifique-se de ter os seguintes programas instalados:
 
-Docker e Docker Compose: Para a orquestração dos contêineres.
+- Docker e Docker Compose: Para a orquestração dos contêineres.
+- Python 3: Para rodar o script do Mininet.
+- Mininet: A biblioteca para a emulação de rede.
+- Figlet: O programa para exibir o nome do script em arte ASCII.
 
-Python 3: Para rodar o script do Mininet.
+### Passo a passo
 
-Mininet: A biblioteca para a emulação de rede.
+**Clone o repositório**:
 
-Figlet: O programa para exibir o nome do script em arte ASCII.
+```bash
 
-Passo a passo
-Clone o repositório:
+git clone [https://github.com/Julio-Caio/iot-dockercity.git](https://github.com/seurepositorio/iot-dockercity.git)
 
-git clone [https://github.com/seurepositorio/iot-dockercity.git](https://github.com/seurepositorio/iot-dockercity.git)
-cd iot-dockercity
+cd IoT-Dockercity
+```
 
 Dê permissão de execução ao script run.sh:
 ```bash
-
    chmod +x run.sh
 ```
 
 ### Execute o script principal:
+
 Use a opção -a ou --all para iniciar todos os componentes da simulação. O script deve ser executado com permissões de root.
 
 ```bash
@@ -144,9 +147,26 @@ Use a opção -a ou --all para iniciar todos os componentes da simulação. O sc
 
 ### 4. Acessar dashboards
 
-* Prometheus: [http://localhost:9090](http://localhost:9090)
-* Grafana: [http://localhost:3000](http://localhost:3000)
+Para alcançar a interface gráfica, configurar e visualizar as dashboards, execute:
 
+```bash
+docker network create -d macvlan   --subnet=<RedeLocal>  --gateway=<GatewayLocal>   -o parent={interface física de rede}   macvlan-net
+```
+
+#### Após isso, conecte esta rede **macvlan-net** ao Prometheus e Grafana:
+
+```bash
+docker network connect macvlan-net prometheus
+docker network connect macvlan-net grafana
+```
+
+```bash
+docker inspect prometheus | grep "IPAddress"
+docker inspect grafana | grep "IPAddress"
+```
+
+* Prometheus: http://{IP-MAC-VLAN-PROMETHEUS}:9090
+* Grafana: http://{IP-MAC-VLAN-GRAFANA}:3000
 
 ---
 

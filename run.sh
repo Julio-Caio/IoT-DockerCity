@@ -3,7 +3,7 @@
 # --------------- infra-up  -----------------------
 NAME_REPO="iot-dockercity"
 NAME_SCRIPT="INFRA-UP!"
-VERSION="1.3.1"
+VERSION="1.3.2"
 
 # Owner: Júlio Caio
 # Date: 24/08/2025
@@ -11,6 +11,7 @@ VERSION="1.3.1"
 # Name: infra-up
 # Location: <REPOSITORY>/run.sh
 # -------------------------------------------------
+
 HELP="\nUSO: ./run.sh [-h]
 #
 #
