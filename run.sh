@@ -36,7 +36,7 @@ CHECKING_NET=$(docker network ls | awk '{print $2}' | grep -E "brteste*")
 FIGLET_NAME=$(figlet ${NAME_SCRIPT})
 
 BRTESTE01_RANGE="172.18.0.0/24"
-BRTESTE02_RANGE="172.19.0.0"
+BRTESTE02_RANGE="172.19.0.0/24"
 
 BRTESTE01_DEVICES=(esp32-p1 edge-vision-p2 ops243-p3 broker_mosquitto)
 BRTESTE02_DEVICES=(grafana prometheus)
@@ -167,7 +167,7 @@ implement_routes() {
     echo -e "Implementando rotas nos devices IoT e broker\n"
 
     for c in "${BRTESTE01_DEVICES[@]}"; do
-        log_info "Adicionando rota no container $c: ${BRTESTE02_RANGE} via ${GW_BRTESTE01}"
+        log_info "Adicionando rota no container $c: ${BRTESTE02_RANGE}/24 via ${GW_BRTESTE01}"
 
         # Checa se a rota já existe
         if docker exec "$c" sh -c "ip route | grep -q '${BRTESTE02_RANGE}'"; then
@@ -227,6 +227,7 @@ main() {
     sleep 2
     if ( implement_routes ); then
 	 log_success "[SUCCESS] Scenario initialized!\n"
+	 start_mininet
     else
 	log_error "Scenario initialization failed. Check routes!\n"
         exit 1

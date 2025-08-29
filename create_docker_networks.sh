@@ -27,8 +27,8 @@ function criar_redes_docker() {
         || echo "Erro ao criar rede brteste02!"
 
     # enviar ao arquivo 'mininet_interfaces.txt' os nomes das bridges
-    echo "br-$(docker network inspect brteste01 -f '{{.Id}}' | cut -c1-12)" > mininet_interfaces.txt
-    echo "br-$(docker network inspect brteste02 -f '{{.Id}}' | cut -c1-12)" >> mininet_interfaces.txt
+    echo "br-$(docker network inspect brteste01 -f '{{.Id}}' | cut -c1-12)" > ./stack-infra/mininet/mininet_interfaces.txt
+    echo "br-$(docker network inspect brteste02 -f '{{.Id}}' | cut -c1-12)" >> ./stack-infra/mininet/mininet_interfaces.txt
 }
 
 main()
